@@ -5,6 +5,9 @@ ObjectDir = $(Here)/objects
 VegasDir = $(Here)/Vegas
 PSDir = $(Here)/PhaseSpace
 QCDLoop = $(Here)/QCDLoop-1.9
+CuhreDir = $(Here)/DCuhre
+FoamDir = $(Here)/Foam
+CubaDir = $(Here)/Cuba
 
 # For ifort support on CERN's lxplus, add the following two lines to your .bashrc
 # source /afs/cern.ch/sw/IntelSoftware/linux/x86_64/xe2016/compilers_and_libraries_2016.1.150/linux/bin/ifortvars.sh intel64
@@ -24,17 +27,28 @@ ifeq ($(useMPI),Yes)
     ccomp = mpicc -lpthread  -lm 
 else
     Exec = ./NumInt
-    F95compiler = ifort -D_UseMPIVegas=0
-    ccomp = gcc -O2
+#     F95compiler = ifort -D_UseMPIVegas=0
+#     ccomp = gcc -O2
+    
+    F95compiler = gfortran -cpp -D_UseMPIVegas=0 -D_compiler=2
+    ccomp = gcc -O3    
+    
 endif
 
 
 
 
 ifeq ($(Opt),Yes)
-   IfortOpts   = -O2 -fpp -I$(Here)/colors -I$(VegasDir) -module $(ModuleDir) 
+#    IfortOpts   = -O2 -fpp -I$(Here)/colors -I$(VegasDir) -module $(ModuleDir) 
+
+   IfortOpts   = -O3 -I$(VegasDir) -I$(ModuleDir) -J$(ModuleDir) $(CollierLibflags) -ffree-line-length-none 
+   
+   
 else
-   IfortOpts   = -O0 -fpp -implicitnone -check bounds -check pointer -warn interfaces -ftrapuv  -debug extended -g -traceback -fpe0 -check uninit -I$(Here)/colors -I$(VegasDir) -module $(ModuleDir) 
+#    IfortOpts   = -O0 -fpp -implicitnone -check bounds -check pointer -warn interfaces -ftrapuv  -debug extended -g -traceback -fpe0 -check uninit -I$(Here)/colors -I$(VegasDir) -module $(ModuleDir) 
+   
+   IfortOpts   = -O0 -fcheck=all -I$(VegasDir) -I$(ModuleDir) -J$(ModuleDir) $(CollierLibflags) -ffree-line-length-none 
+   
 endif
 fcomp = $(F95compiler) $(IfortOpts) @$(ConfigFile)
 
@@ -69,7 +83,25 @@ IntegralObj = $(QCDLoop)/ql/libqcdloop.a\
               $(QCDLoop)/ff/libff.a
 
 
+CuhreObj = $(CuhreDir)/dcuhre.o\
+           $(CuhreDir)/d07hre.o\
+           $(CuhreDir)/d09hre.o\
+           $(CuhreDir)/d113re.o\
+           $(CuhreDir)/d132re.o\
+           $(CuhreDir)/dadhre.o\
+           $(CuhreDir)/dchhre.o\
+           $(CuhreDir)/dfshre.o\
+           $(CuhreDir)/dinhre.o\
+           $(CuhreDir)/drlhre.o\
+           $(CuhreDir)/dtrhre.o
+              
+FoamObj = $(FoamDir)/GLK.o\
+          $(FoamDir)/FoamA.o\
+          $(FoamDir)/PseuMar.o\
+          $(FoamDir)/WtLimit.o\
+          $(FoamDir)/ranlux.o
 
+CubaObj = $(CubaDir)/libcuba.a
 
 # ------------------------------------------------------------
 
@@ -90,7 +122,7 @@ all:  $(VegasObj) $(RockyObj) $(allObjects)
 	@echo " linking"
 	@echo " executable file is " $(Exec)
 	@echo " "
-	$(fcomp) -o $(Exec) $(allObjects) $(RockyObj) $(VegasObj) 
+	$(fcomp) -o $(Exec) $(allObjects) $(RockyObj) $(VegasObj) $(CuhreObj) $(FoamObj) $(CubaObj)
 
 clean:
 	rm -f ./modules/*.mod

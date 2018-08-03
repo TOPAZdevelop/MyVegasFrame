@@ -155,7 +155,7 @@ void gfsr_init(long seed)
 
 
 
-void vegas_(double regn[], int *ndim_in, void (*fxn)(double x[], double *wgt, double f[]),
+void vegas_ser_(double regn[], int *ndim_in, void (*fxn)(double x[], double *wgt, double f[]),
            int *init_in, int *ncall_in, int *itmx_in, int *nprn_in,
            int *fcns_in, int *pdim_in, int *wrks_in,
            double tgral[], double sd[], double chi2a[])

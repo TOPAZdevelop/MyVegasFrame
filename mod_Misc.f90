@@ -1223,7 +1223,7 @@ complex(16) :: mult, tsum
 
     work(1:N,1:N+1) = matrix(1:N,1:N+1)
     do i = 1,N
-      if (cqabs(work(i,i)) <= 1.0e-6) then
+      if (abs(work(i,i)) <= 1.0e-6) then
 !          print *, i,N
 !          print *, "go_Gauss, Zero pivot element: ",cdabs(work(i,i))
 !          call Error("go_Gauss, Zero pivot element")

@@ -1,14 +1,16 @@
+! ./NumInt VegasIt0=3 VegasNc0=100000
+
 PROGRAM NumTwoLoop
 use ModParameters
 use ModKinematics
-use ifport
+! use ifport
 implicit none
-real(8) :: VG_Result,VG_Error,chi2
-!DEC$ IF(_UseMPIVegas .EQ.1)
-include 'mpif.h'
-integer ::ierror
-   call MPI_INIT(ierror)
-   call MPI_COMM_RANK(MPI_COMM_WORLD,MPI_Rank,ierror)
+real(8) :: MCresult,MCerror,chi2
+!DEC$ IF(_UseMPIVegas.EQ.1)
+! include 'mpif.h'
+! integer ::ierror
+!    call MPI_INIT(ierror)
+!    call MPI_COMM_RANK(MPI_COMM_WORLD,MPI_Rank,ierror)
 !DEC$ ELSE
    MPI_Rank=0
 !DEC$ ENDIF
@@ -35,7 +37,7 @@ integer ::ierror
    
    call CloseFiles()
 !DEC$ IF(_UseMPIVegas .EQ.1)  
-   call MPI_FINALIZE(ierror)
+!    call MPI_FINALIZE(ierror)
 !DEC$ ENDIF
 
 
@@ -62,8 +64,12 @@ integer :: NumArgs,NArg
    VegasIt0=-1
    VegasIt1=-1
 
-      
+#if _compiler==1
    NumArgs = NArgs()-1
+#elif _compiler==2
+   NumArgs = COMMAND_ARGUMENT_COUNT()
+#endif   
+      
    do NArg=1,NumArgs
     call GetArg(NArg,arg)
     if( arg(1:9).eq."VegasIt0=" ) then
@@ -91,7 +97,7 @@ END SUBROUTINE
 
 SUBROUTINE SetFileNames()
 use ModParameters
-use ifport
+! use ifport
 implicit none
 
 
@@ -124,12 +130,17 @@ use ModIntegrand
 use ModKinematics
 use ModParameters
 implicit none
-real(8) :: VG_Result,VG_Error,VG_Chi2
+real(8) :: MCresult,MCerror,MC_Chi2
 !DEC$ IF(_UseMPIVegas .EQ.1)  
-include 'mpif.h'
+! include 'mpif.h'
 !DEC$ ENDIF
-integer i,init,NDim
+integer i,init,NDim,NEVAL,IFAIL,kDim,nBuf,nSampl,OptDrive,OptEdge,loop,nregions
 double precision yrange(1:2*MXDIM)
+INTEGER, PARAMETER :: NW=10000000
+REAL(8) :: WORK(1:NW),MCwt,MCvector(10)
+integer ::  userdata, nvec, flags, mineval, maxeval, key,  spin, nbatch, gridno,nnew, nmin
+double precision :: epsrel, epsabs, flatness
+
 
 
   ndim=2
@@ -147,12 +158,103 @@ double precision yrange(1:2*MXDIM)
   call ClearRedHisto()
 !DEC$ ENDIF  
 
+  yrange(1) = -20d0
+  yrange(2) = -20d0
+  yrange(3) = +20d0
+  yrange(4) = +20d0
+
+
+
 
 !DEC$ IF(_UseMPIVegas .EQ.1)  
-  call vegas_mpi(yrange(1:2*ndim),ndim,VegasIntegrand1,init,ncall,itmx,nprn,NUMFUNCTIONS,PDIM,WORKERS,VG_Result,VG_Error,VG_Chi2)
+!   call vegas_mpi(yrange(1:2*ndim),ndim,VegasIntegrand2,init,ncall,itmx,nprn,NUMFUNCTIONS,PDIM,WORKERS,MCresult,MCerror,MC_Chi2)
 !DEC$ ELSE  
-  call vegas(yrange(1:2*ndim),ndim,VegasIntegrand1,init,ncall,itmx,nprn,NUMFUNCTIONS,PDIM,WORKERS,VG_Result,VG_Error,VG_Chi2)
+  call vegas_ser(yrange(1:2*ndim),ndim,VegasIntegrand2,init,ncall,itmx,nprn,NUMFUNCTIONS,PDIM,WORKERS,MCresult,MCerror,MC_Chi2)
 !DEC$ ENDIF
+
+
+
+print *, ""
+call DCUHRE(ndim,NUMFUNCTIONS,yrange(1:2),yrange(3:4),ncall/2,ncall,VegasIntegrand2_DCUHRE,0d0,1d-6,0,NW,init,MCresult,MCerror,NEVAL,IFAIL,WORK)
+print *, "cuhre ",MCresult,MCerror,NEVAL,IFAIL
+
+
+
+
+
+
+
+userdata = 0 
+nvec =1 
+epsrel = 1d-6
+epsabs = 0d0
+flags = 0 
+key =  9 
+spin = -1
+
+print *, ""
+
+  call cuhre(ndim, NUMFUNCTIONS, VegasIntegrand2_CUBA, userdata, nvec, epsrel, epsabs, flags, ncall/2,ncall ,key, "", spin,nregions, NEVAL, IFAIL, MCresult,MCerror, MC_Chi2)
+
+print *, "cuba cuhre",MCresult,MCerror,NEVAL,IFAIL
+
+
+
+
+
+print *, ""
+nbatch = 1000
+gridno=1
+  call vegas(ndim, NUMFUNCTIONS, VegasIntegrand2_CUBA, userdata, nvec,epsrel, epsabs, flags, 1313, ncall/2,ncall, ncall/10, ncall/10, nbatch, gridno, "", spin, NEVAL, IFAIL, MCresult,MCerror, MC_Chi2)
+
+print *, "cuba vegas",MCresult,MCerror,NEVAL,IFAIL
+
+
+
+
+
+print *, ""
+nbatch = 1000
+nnew = 1000
+nmin = 2
+flatness = 25d0
+  call suave(ndim, NUMFUNCTIONS, VegasIntegrand2_CUBA, userdata, nvec,epsrel, epsabs, flags, 1313, ncall/2,ncall, nnew, nmin, flatness, "", spin, nregions,NEVAL, IFAIL, MCresult,MCerror, MC_Chi2)
+
+print *, "cuba suave",MCresult,MCerror,NEVAL,IFAIL
+
+
+print *, ""
+! *=========================================================
+      nDim      = 2
+      kDim      = 0
+      nBuf      = 1000          ! Buffer length <5000, default = 1000
+      nSampl    = 10000           ! Number of MC events in exploration of a cell, default = 200
+      OptDrive  = 2             ! Type of Drive =0,1,2 for TrueVol,Sigma,WtMax, default = 2
+      OptEdge   = 1             ! Include vertices in sampling or not, =0,1, default =1
+! *=========================================================
+      CALL GLK_Book1(8100,'WT distribution  $', 80, 0.0d0,2d0)
+! *========================================================= 
+      CALL FoamA_SetnDim(          nDim)
+      CALL FoamA_SetkDim(          kDim)
+      CALL FoamA_SetnBuf(          nBuf)
+      CALL FoamA_SetnSampl(      nSampl)
+      CALL FoamA_SetOptDrive(  OptDrive)
+      CALL FoamA_SetOptEdge(    OptEdge)
+      CALL FoamA_SetChat(0)
+! *------------------------------------
+      CALL FoamA_Initialize(VegasIntegrand2_FOAM)
+! *------------------------------------
+      CALL WtLimitStart(1004,1005,1000,10d0)  
+           
+      DO loop = 1, ncall
+         CALL FoamA_MakeEvent(VegasIntegrand2_FOAM)    ! generate MC event
+         CALL FoamA_GetMCvector(MCvector)  ! get MC event, vector
+         CALL FoamA_GetMCwt(MCwt)          ! get MC weight
+         CALL WtLimitFill(MCwt)
+         CALL GLK_Fil1(8100,MCwt,1d0)
+      ENDDO
+      CALL FoamA_Finalize(MCresult,MCerror)
+!       WRITE(*,'(a,g19.9,a,g19.9,a,f7.5)') 'MCresult= ',MCresult,' +- ',MCerror,'         RelErr= ',MCerror/MCresult   !
 
 
 return
@@ -221,7 +323,7 @@ END SUBROUTINE
 
 
 
-SUBROUTINE WriteHisto(TheUnit,curit,VG_CurrResult,VG_CurrError,VG_Result,VG_Error,Chi2,RunTime)
+SUBROUTINE WriteHisto(TheUnit,curit,VG_CurrResult,VG_CurrError,MCresult,MCerror,Chi2,RunTime)
 use ModKinematics
 use ModParameters
 implicit none
@@ -229,7 +331,7 @@ integer :: NBin,Hits,NHisto,SumHits,TheUnit,curit,NBin2,NBin3,NHisto2
 real(8) :: BinSize,LowVal,BinVal,Value,Error,Integral
 real(8) :: BinSize2,BinSize3,LowVal2,LowVal3,BinVal2,BinVal3
 real(8),parameter :: ToGeV=1d2, ToPb=1d-3
-real(8) :: VG_Result,VG_Error,RunTime,VG_CurrResult,VG_CurrError,Chi2
+real(8) :: MCresult,MCerror,RunTime,VG_CurrResult,VG_CurrError,Chi2
 character :: filename*(200),arg*(500)
 integer, save :: Prev_Process=-1313999
 
@@ -254,7 +356,7 @@ integer, save :: Prev_Process=-1313999
         open(unit=TheUnit+1,file=trim(filename),form='formatted',access= 'sequential',status='old',position='append')   ! status file
         if( curit.eq.1 ) write(TheUnit+1,'(A1,1X,A)') "#","-------------------------------------------------------------------------------------------------"
     endif
-    if( curit.gt.0 ) write(TheUnit+1,'(A1,1X,I3,4E20.8,F12.2)') "#",curit,VG_CurrResult,VG_CurrError,VG_Result,VG_Error,Chi2
+    if( curit.gt.0 ) write(TheUnit+1,'(A1,1X,I3,4E20.8,F12.2)') "#",curit,VG_CurrResult,VG_CurrError,MCresult,MCerror,Chi2
   endif
 
   call WriteParameters(TheUnit)
@@ -262,7 +364,7 @@ integer, save :: Prev_Process=-1313999
   write(TheUnit,"(A,2X,1F20.10)") "# EvalCounter  =",dble(EvalCounter)
   write(TheUnit,"(A,2X,1F20.10)") "# SkipCounter  =",dble(SkipCounter)
   if( EvalCounter.gt.0 .and. dble(SkipCounter)/dble(EvalCounter) .gt. 0.02d0 ) write(TheUnit,"(A,2X)") "# **** WARNING  ****: SkipCounter is larger than 2%"
-  write(TheUnit,"(A,2X,1PE20.10,2X,1PE20.5)") "#TotCS[fb]=",VG_Result,VG_Error
+  write(TheUnit,"(A,2X,1PE20.10,2X,1PE20.5)") "#TotCS[fb]=",MCresult,MCerror
   do NHisto=1,NumHistograms
       write(TheUnit,"(A,I2,A,A)") "# Histogram",NHisto,": ",Histo(NHisto)%Info
       Integral = 0d0
@@ -307,7 +409,7 @@ SUBROUTINE InitRandomSeed(Seeds)
 use modParameters
 use modMisc
 implicit none
-integer :: Seeds(0:2)
+integer :: Seeds(0:12)
 integer, dimension(:), allocatable :: gen_seed
 integer :: n,i,sclock,SeedSize
 

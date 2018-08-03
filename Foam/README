@@ -1,0 +1,37 @@
+*///////////////////////////////////////////////////////////////////////////////////////////
+*//                                                                                       //
+*//             Foam Version 2.02                                                         //
+*//             May 2001                                                                  //
+*//                                                                                       //
+*//  N-dimensional general purpose Monte Carlo sampler                                    //
+*//  with the self-adapting simplical and hyper-cubical grid                              //
+*//                                                                                       //
+*//             Author:   Stanislaw JADACH                                                //
+*//             Address:  INP Cracow                                                      //
+*//             Email:    Stanislaw.Jadach@cern.ch, Stanislaw.Jadach@ifj.edu.pl           //
+*//             HomePage: http://home.cern.ch/jadach/                                     //
+*//                                                                                       //
+*//  First version 1.00 written by S.J. in May 1999 during visit in DESY-Hamburg          //
+*//        version 2.00 written by S.J. in Aug 2000 during visit in DESY-Zeuthen          //
+*///////////////////////////////////////////////////////////////////////////////////////////
+
+Commands to run test programs are listed in Makefile.
+# 	make DemoFoam
+# 	make DemoMCell
+
+Fortran flags for various platforms are listed in Makefile.
+
+The basic programs are:
+    FoamA.f  with header file FoamA.h
+    MCellA.f with header file MCellA.h
+
+For the description of the input (configuration) parameters see comments
+in FoamA.f and MCellA.f respectively.
+
+Demonstration main programs DemoFoam.f and DemoMCell.f can serve as templates
+for the user application programs
+
+The testing main program uses histograming package GLK of the KK Monte Carlo,
+which user may replace with any other histograming package.
+
+Note that C++ version of Foam is now available.

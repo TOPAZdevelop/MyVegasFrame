@@ -1,0 +1,484 @@
+\documentclass[12pt]{article}
+\usepackage{color}
+\usepackage{epic}
+\textwidth  = 16cm
+\textheight = 18cm
+\pagestyle{empty}
+\begin{document}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[!ht]
+\centering
+% =========== big frame, title etc. =======
+\setlength{\unitlength}{0.1mm}
+\begin{picture}(1600,1600)
+\put(0,0){\framebox(1600,1600){ }}
+% =========== Vertices Vertices ===========
+\put(0,0){\begin{picture}( 1600,1600)
+\put(0,0){\framebox( 1600,1600){ }}
+\newcommand{\VD}[2]{\put(#1,#2){\circle*{20}                                                  }}
+\newcommand{\VS}[2]{\put(#1,#2){\makebox(0,0){\Large $\star$}                                 }}
+\newcommand{\VN}[3]{\put(#1,#2){\makebox(0,0)[b]{\hbox{\color{red}\scriptsize #3}}}}
+\VS{    0}{    0}
+\VN{   -8}{   12}{    1}
+\VS{ 1600}{    0}
+\VN{ 1592}{   12}{    2}
+\VS{    0}{ 1600}
+\VN{   -8}{ 1612}{    3}
+\VD{ 1600}{ 1600}
+\VN{ 1592}{ 1612}{    4}
+\VS{ 1000}{ 1000}
+\VN{  992}{ 1012}{    5}
+\VS{ 1000}{ 1000}
+\VN{  992}{ 1012}{    6}
+\VS{  250}{  250}
+\VN{  242}{  262}{    7}
+\VS{  875}{  875}
+\VN{  867}{  887}{    8}
+\VS{    0}{ 1000}
+\VN{   -8}{ 1012}{    9}
+\VS{ 1093}{   93}
+\VN{ 1085}{  105}{   10}
+\VS{  218}{  218}
+\VN{  210}{  230}{   11}
+\VS{  671}{  171}
+\VN{  663}{  183}{   12}
+\VS{  792}{  792}
+\VN{  784}{  804}{   13}
+\VS{  546}{ 1146}
+\VN{  538}{ 1158}{   14}
+\VS{   99}{  974}
+\VN{   91}{  986}{   15}
+\VS{  812}{  812}
+\VN{  804}{  824}{   16}
+\VS{  925}{  125}
+\VN{  917}{  137}{   17}
+\VS{  935}{  123}
+\VN{  927}{  135}{   18}
+\VS{    0}{ 1300}
+\VN{   -8}{ 1312}{   19}
+\VS{  707}{  332}
+\VN{  699}{  344}{   20}
+\VS{    0}{  375}
+\VN{   -8}{  387}{   21}
+\VD{ 1225}{ 1225}
+\VN{ 1217}{ 1237}{   22}
+\VS{  410}{ 1260}
+\VN{  402}{ 1272}{   23}
+\VS{  967}{  561}
+\VN{  959}{  573}{   24}
+\VS{  953}{  953}
+\VN{  945}{  965}{   25}
+\VS{  410}{ 1110}
+\VN{  402}{ 1122}{   26}
+\VS{  671}{  171}
+\VN{  663}{  183}{   27}
+\VS{  600}{    0}
+\VN{  592}{   12}{   28}
+\VS{  341}{ 1204}
+\VN{  333}{ 1216}{   29}
+\VD{  765}{  890}
+\VN{  757}{  902}{   30}
+\VS{ 1046}{  546}
+\VN{ 1038}{  558}{   31}
+\VD{  191}{  316}
+\VN{  183}{  328}{   32}
+\VS{  156}{  156}
+\VN{  148}{  168}{   33}
+\VD{   95}{  986}
+\VN{   87}{  998}{   34}
+\VS{  876}{  689}
+\VN{  868}{  701}{   35}
+\VD{   23}{  914}
+\VN{   15}{  926}{   36}
+\VS{  876}{  689}
+\VN{  868}{  701}{   37}
+\VS{  328}{ 1328}
+\VN{  320}{ 1340}{   38}
+\VD{ 1056}{ 1056}
+\VN{ 1048}{ 1068}{   39}
+\VS{  893}{  464}
+\VN{  885}{  476}{   40}
+\VS{  947}{  287}
+\VN{  939}{  299}{   41}
+\VS{    0}{ 1150}
+\VN{   -8}{ 1162}{   42}
+\VD{ 1150}{  750}
+\VN{ 1142}{  762}{   43}
+\VS{  765}{  890}
+\VN{  757}{  902}{   44}
+\VD{  958}{  958}
+\VN{  950}{  970}{   45}
+\VS{  164}{  164}
+\VN{  156}{  176}{   46}
+\VD{  566}{  191}
+\VN{  558}{  203}{   47}
+\VD{   99}{  974}
+\VN{   91}{  986}{   48}
+\VD{   54}{  804}
+\VN{   46}{  816}{   49}
+\VD{  503}{  128}
+\VN{  495}{  140}{   50}
+\VD{  256}{ 1153}
+\VN{  248}{ 1165}{   51}
+\VD{  959}{  451}
+\VN{  951}{  463}{   52}
+\VD{ 1150}{ 1150}
+\VN{ 1142}{ 1162}{   53}
+\VS{  706}{  815}
+\VN{  698}{  827}{   54}
+\VD{  689}{  251}
+\VN{  681}{  263}{   55}
+\VD{  299}{ 1216}
+\VN{  291}{ 1228}{   56}
+\VD{  479}{ 1279}
+\VN{  471}{ 1291}{   57}
+\VD{  693}{   93}
+\VN{  685}{  105}{   58}
+\VS{  114}{  879}
+\VN{  106}{  891}{   59}
+\VD{  693}{   93}
+\VN{  685}{  105}{   60}
+\VD{    0}{  140}
+\VN{   -8}{  152}{   61}
+\VD{  476}{ 1276}
+\VN{  468}{ 1288}{   62}
+\VD{  697}{  236}
+\VN{  689}{  248}{   63}
+\VD{  640}{ 1140}
+\VN{  632}{ 1152}{   64}
+\VD{  737}{  159}
+\VN{  729}{  171}{   65}
+\VD{  188}{   48}
+\VN{  180}{   60}{   66}
+\VD{  645}{  741}
+\VN{  637}{  753}{   67}
+\VD{  191}{  191}
+\VN{  183}{  203}{   68}
+\VD{  246}{  845}
+\VN{  238}{  857}{   69}
+\VD{  957}{  424}
+\VN{  949}{  436}{   70}
+\VD{  273}{ 1223}
+\VN{  265}{ 1235}{   71}
+\VD{ 1003}{  499}
+\VN{  995}{  511}{   72}
+\VD{  682}{   82}
+\VN{  674}{   94}{   73}
+\VD{  307}{ 1345}
+\VN{  299}{ 1357}{   74}
+\VD{  882}{  882}
+\VN{  874}{  894}{   75}
+\VD{  328}{ 1151}
+\VN{  320}{ 1163}{   76}
+\VD{  224}{ 1237}
+\VN{  216}{ 1249}{   77}
+\end{picture}}
+% ============== End Vertices ===========
+% =========== Vertices Vertices ===========
+\put(0,0){\begin{picture}( 1600,1600)
+\drawline( 250, 250)( 707, 332)
+\drawline( 707, 332)( 812, 812)
+\drawline( 812, 812)( 250, 250)
+\put( 589, 464){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   34 }}}
+\drawline(1225,1225)(   0,1600)
+\drawline(   0,1600)(1600,1600)
+\drawline(1600,1600)(1225,1225)
+\put( 941,1475){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   38 }}}
+\drawline( 410,1110)( 546,1146)
+\drawline( 546,1146)( 875, 875)
+\drawline( 875, 875)( 410,1110)
+\put( 610,1043){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   46 }}}
+\drawline( 600,   0)(1600,   0)
+\drawline(1600,   0)( 925, 125)
+\drawline( 925, 125)( 600,   0)
+\put(1041,  41){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   50 }}}
+\drawline( 765, 890)( 410,1110)
+\drawline( 410,1110)( 875, 875)
+\drawline( 875, 875)( 765, 890)
+\put( 683, 958){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   54 }}}
+\drawline( 935, 123)(1093,  93)
+\drawline(1093,  93)(1046, 546)
+\drawline(1046, 546)( 935, 123)
+\put(1024, 254){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   57 }}}
+\drawline(   0, 375)( 191, 316)
+\drawline( 191, 316)( 218, 218)
+\drawline( 218, 218)(   0, 375)
+\put( 136, 303){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   58 }}}
+\drawline(  95, 986)( 410,1110)
+\drawline( 410,1110)( 765, 890)
+\drawline( 765, 890)(  95, 986)
+\put( 423, 995){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   62 }}}
+\drawline(   0,1000)( 410,1110)
+\drawline( 410,1110)(  95, 986)
+\drawline(  95, 986)(   0,1000)
+\put( 168,1032){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   63 }}}
+\drawline(   0, 375)(  23, 914)
+\drawline(  23, 914)( 191, 316)
+\drawline( 191, 316)(   0, 375)
+\put(  71, 535){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   66 }}}
+\drawline(   0, 375)(   0,1000)
+\drawline(   0,1000)(  23, 914)
+\drawline(  23, 914)(   0, 375)
+\put(   7, 763){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   67 }}}
+\drawline( 876, 689)( 967, 561)
+\drawline( 967, 561)(1000,1000)
+\drawline(1000,1000)( 876, 689)
+\put( 947, 750){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   68 }}}
+\drawline(1056,1056)(   0,1600)
+\drawline(   0,1600)(1225,1225)
+\drawline(1225,1225)(1056,1056)
+\put( 760,1293){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   72 }}}
+\drawline(1000,1000)(   0,1600)
+\drawline(   0,1600)(1056,1056)
+\drawline(1056,1056)(1000,1000)
+\put( 685,1218){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   73 }}}
+\drawline( 893, 464)( 967, 561)
+\drawline( 967, 561)( 876, 689)
+\drawline( 876, 689)( 893, 464)
+\put( 912, 571){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   74 }}}
+\drawline(   0,1000)(   0,1150)
+\drawline(   0,1150)( 341,1204)
+\drawline( 341,1204)(   0,1000)
+\put( 113,1118){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   79 }}}
+\drawline(1093,  93)(1150, 750)
+\drawline(1150, 750)(1000,1000)
+\drawline(1000,1000)(1093,  93)
+\put(1081, 614){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   80 }}}
+\drawline(1093,  93)(1600,   0)
+\drawline(1600,   0)(1150, 750)
+\drawline(1150, 750)(1093,  93)
+\put(1281, 281){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   81 }}}
+\drawline( 792, 792)( 765, 890)
+\drawline( 765, 890)( 875, 875)
+\drawline( 875, 875)( 792, 792)
+\put( 810, 852){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   82 }}}
+\drawline( 953, 953)(   0,1600)
+\drawline(   0,1600)( 958, 958)
+\drawline( 958, 958)( 953, 953)
+\put( 637,1170){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   85 }}}
+\drawline( 164, 164)(   0, 375)
+\drawline(   0, 375)( 218, 218)
+\drawline( 218, 218)( 164, 164)
+\put( 127, 252){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   86 }}}
+\drawline( 566, 191)( 671, 171)
+\drawline( 671, 171)( 707, 332)
+\drawline( 707, 332)( 566, 191)
+\put( 648, 231){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   88 }}}
+\drawline( 250, 250)( 566, 191)
+\drawline( 566, 191)( 707, 332)
+\drawline( 707, 332)( 250, 250)
+\put( 507, 257){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   89 }}}
+\drawline(  99, 974)(   0,1000)
+\drawline(   0,1000)( 765, 890)
+\drawline( 765, 890)(  99, 974)
+\put( 288, 954){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   90 }}}
+\drawline( 792, 792)(  99, 974)
+\drawline(  99, 974)( 765, 890)
+\drawline( 765, 890)( 792, 792)
+\put( 552, 885){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   91 }}}
+\drawline(  54, 804)(   0,1000)
+\drawline(   0,1000)(  99, 974)
+\drawline(  99, 974)(  54, 804)
+\put(  51, 926){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   92 }}}
+\drawline( 218, 218)(  54, 804)
+\drawline(  54, 804)(  99, 974)
+\drawline(  99, 974)( 218, 218)
+\put( 123, 665){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   93 }}}
+\drawline( 503, 128)( 671, 171)
+\drawline( 671, 171)( 156, 156)
+\drawline( 156, 156)( 503, 128)
+\put( 443, 151){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   94 }}}
+\drawline( 256,1153)( 341,1204)
+\drawline( 341,1204)( 546,1146)
+\drawline( 546,1146)( 256,1153)
+\put( 381,1167){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   96 }}}
+\drawline( 935, 123)(1046, 546)
+\drawline(1046, 546)( 959, 451)
+\drawline( 959, 451)( 935, 123)
+\put( 980, 373){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize   99 }}}
+\drawline(1150,1150)(1600,   0)
+\drawline(1600,   0)(1600,1600)
+\drawline(1600,1600)(1150,1150)
+\put(1450, 916){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  100 }}}
+\drawline(1000,1000)(1600,   0)
+\drawline(1600,   0)(1150,1150)
+\drawline(1150,1150)(1000,1000)
+\put(1250, 716){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  101 }}}
+\drawline( 218, 218)( 706, 815)
+\drawline( 706, 815)( 792, 792)
+\drawline( 792, 792)( 218, 218)
+\put( 572, 608){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  102 }}}
+\drawline( 689, 251)( 671, 171)
+\drawline( 671, 171)( 876, 689)
+\drawline( 876, 689)( 689, 251)
+\put( 745, 370){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  104 }}}
+\drawline( 812, 812)( 689, 251)
+\drawline( 689, 251)( 876, 689)
+\drawline( 876, 689)( 812, 812)
+\put( 792, 584){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  105 }}}
+\drawline(   0,1150)( 299,1216)
+\drawline( 299,1216)( 341,1204)
+\drawline( 341,1204)(   0,1150)
+\put( 213,1190){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  106 }}}
+\drawline( 479,1279)(   0,1600)
+\drawline(   0,1600)(1000,1000)
+\drawline(1000,1000)( 479,1279)
+\put( 493,1293){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  108 }}}
+\drawline( 958, 958)( 479,1279)
+\drawline( 479,1279)(1000,1000)
+\drawline(1000,1000)( 958, 958)
+\put( 812,1079){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  109 }}}
+\drawline( 693,  93)( 600,   0)
+\drawline( 600,   0)( 925, 125)
+\drawline( 925, 125)( 693,  93)
+\put( 739,  72){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  110 }}}
+\drawline( 114, 879)(  99, 974)
+\drawline(  99, 974)( 706, 815)
+\drawline( 706, 815)( 114, 879)
+\put( 306, 889){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  112 }}}
+\drawline( 693,  93)( 925, 125)
+\drawline( 925, 125)( 671, 171)
+\drawline( 671, 171)( 693,  93)
+\put( 763, 129){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  114 }}}
+\drawline(   0,   0)( 693,  93)
+\drawline( 693,  93)( 671, 171)
+\drawline( 671, 171)(   0,   0)
+\put( 454,  88){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  115 }}}
+\drawline(   0, 140)(   0, 375)
+\drawline(   0, 375)( 164, 164)
+\drawline( 164, 164)(   0, 140)
+\put(  54, 226){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  116 }}}
+\drawline(   0,   0)(   0, 140)
+\drawline(   0, 140)( 164, 164)
+\drawline( 164, 164)(   0,   0)
+\put(  54, 101){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  117 }}}
+\drawline( 328,1328)( 476,1276)
+\drawline( 476,1276)( 953, 953)
+\drawline( 953, 953)( 328,1328)
+\put( 585,1185){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  118 }}}
+\drawline( 328,1328)(   0,1600)
+\drawline(   0,1600)( 476,1276)
+\drawline( 476,1276)( 328,1328)
+\put( 268,1401){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  119 }}}
+\drawline( 697, 236)( 893, 464)
+\drawline( 893, 464)( 876, 689)
+\drawline( 876, 689)( 697, 236)
+\put( 822, 463){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  120 }}}
+\drawline( 671, 171)( 893, 464)
+\drawline( 893, 464)( 697, 236)
+\drawline( 697, 236)( 671, 171)
+\put( 753, 290){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  121 }}}
+\drawline( 875, 875)( 640,1140)
+\drawline( 640,1140)( 953, 953)
+\drawline( 953, 953)( 875, 875)
+\put( 822, 989){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  122 }}}
+\drawline( 875, 875)( 328,1328)
+\drawline( 328,1328)( 640,1140)
+\drawline( 640,1140)( 875, 875)
+\put( 614,1114){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  123 }}}
+\drawline( 737, 159)( 935, 123)
+\drawline( 935, 123)( 947, 287)
+\drawline( 947, 287)( 737, 159)
+\put( 873, 189){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  124 }}}
+\drawline( 671, 171)( 737, 159)
+\drawline( 737, 159)( 947, 287)
+\drawline( 947, 287)( 671, 171)
+\put( 785, 205){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  125 }}}
+\drawline( 188,  48)( 503, 128)
+\drawline( 503, 128)( 156, 156)
+\drawline( 156, 156)( 188,  48)
+\put( 282, 110){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  126 }}}
+\drawline(   0,   0)( 188,  48)
+\drawline( 188,  48)( 156, 156)
+\drawline( 156, 156)(   0,   0)
+\put( 114,  68){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  127 }}}
+\drawline( 645, 741)( 114, 879)
+\drawline( 114, 879)( 706, 815)
+\drawline( 706, 815)( 645, 741)
+\put( 488, 811){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  128 }}}
+\drawline( 191, 191)( 671, 171)
+\drawline( 671, 171)( 250, 250)
+\drawline( 250, 250)( 191, 191)
+\put( 370, 204){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  130 }}}
+\drawline( 156, 156)( 671, 171)
+\drawline( 671, 171)( 191, 191)
+\drawline( 191, 191)( 156, 156)
+\put( 339, 172){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  131 }}}
+\drawline( 218, 218)( 246, 845)
+\drawline( 246, 845)( 645, 741)
+\drawline( 645, 741)( 218, 218)
+\put( 369, 601){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  132 }}}
+\drawline( 218, 218)( 114, 879)
+\drawline( 114, 879)( 246, 845)
+\drawline( 246, 845)( 218, 218)
+\put( 192, 647){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  133 }}}
+\drawline( 671, 171)( 957, 424)
+\drawline( 957, 424)( 967, 561)
+\drawline( 967, 561)( 671, 171)
+\put( 865, 385){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  134 }}}
+\drawline( 671, 171)( 947, 287)
+\drawline( 947, 287)( 957, 424)
+\drawline( 957, 424)( 671, 171)
+\put( 858, 294){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  135 }}}
+\drawline( 273,1223)( 410,1260)
+\drawline( 410,1260)( 546,1146)
+\drawline( 546,1146)( 273,1223)
+\put( 409,1209){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  136 }}}
+\drawline(   0,1300)( 410,1260)
+\drawline( 410,1260)( 273,1223)
+\drawline( 273,1223)(   0,1300)
+\put( 227,1261){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  137 }}}
+\drawline(1003, 499)(1046, 546)
+\drawline(1046, 546)(1000,1000)
+\drawline(1000,1000)(1003, 499)
+\put(1016, 681){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  138 }}}
+\drawline( 959, 451)(1003, 499)
+\drawline(1003, 499)(1000,1000)
+\drawline(1000,1000)( 959, 451)
+\put( 987, 650){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  139 }}}
+\drawline(   0,   0)( 682,  82)
+\drawline( 682,  82)( 693,  93)
+\drawline( 693,  93)(   0,   0)
+\put( 458,  58){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  140 }}}
+\drawline(   0,   0)( 600,   0)
+\drawline( 600,   0)( 682,  82)
+\drawline( 682,  82)(   0,   0)
+\put( 427,  27){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  141 }}}
+\drawline(   0,1300)( 307,1345)
+\drawline( 307,1345)( 410,1260)
+\drawline( 410,1260)(   0,1300)
+\put( 239,1301){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  142 }}}
+\drawline(   0,1300)(   0,1600)
+\drawline(   0,1600)( 307,1345)
+\drawline( 307,1345)(   0,1300)
+\put( 102,1415){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  143 }}}
+\drawline( 882, 882)( 876, 689)
+\drawline( 876, 689)(1000,1000)
+\drawline(1000,1000)( 882, 882)
+\put( 919, 857){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  144 }}}
+\drawline( 812, 812)( 876, 689)
+\drawline( 876, 689)( 882, 882)
+\drawline( 882, 882)( 812, 812)
+\put( 856, 794){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  145 }}}
+\drawline(   0,1000)( 328,1151)
+\drawline( 328,1151)( 546,1146)
+\drawline( 546,1146)(   0,1000)
+\put( 291,1099){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  146 }}}
+\drawline(   0,1000)( 256,1153)
+\drawline( 256,1153)( 328,1151)
+\drawline( 328,1151)(   0,1000)
+\put( 194,1101){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  147 }}}
+\drawline(   0,1150)( 224,1237)
+\drawline( 224,1237)( 299,1216)
+\drawline( 299,1216)(   0,1150)
+\put( 174,1201){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  148 }}}
+\drawline(   0,1150)(   0,1300)
+\drawline(   0,1300)( 224,1237)
+\drawline( 224,1237)(   0,1150)
+\put(  74,1229){\makebox(0,0)[b]{\hbox{\color{magenta}\scriptsize  149 }}}
+\end{picture}}
+% ============== End Vertices ===========
+\end{picture}
+\end{figure}
+\end{document}

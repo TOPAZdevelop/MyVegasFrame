@@ -13,7 +13,12 @@ integer(8), public, save :: SkipCounter=0
 logical, public :: Seed_random,WarmUp
 integer(8) :: ItMx,NCall,NPrn,It
 integer(8), parameter :: MXDIM=25! has to match pvegas_mpi.h
-integer, public :: TheSeeds(0:2) = (/2,700470849,476/)! only used if seed_random=.false., the first entry is the total number of seeds
+#if _compiler==1
+integer, parameter :: NumSeeds=2
+#else
+integer, parameter :: NumSeeds=12
+#endif
+integer, public :: TheSeeds(0:12) = (/NumSeeds,700470849,476,123123,756,21434,6754654,12313,54353,12313,65464,12313,65464/)! only used if seed_random=.false., the first entry is the total number of seeds
 
 ! PVegas (MPI) part
 integer, public :: MPI_Rank
